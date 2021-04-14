@@ -1,9 +1,5 @@
+{
 'use strict';
-
-//  document.getElementById('test-button').addEventListener('click', function(){
-//  const links = document.querySelectorAll('.titles a');
-//  console.log('links:', links);
-//  });
 
 const titleClickHandler = function(event){
     event.preventDefault();
@@ -80,7 +76,6 @@ function genereteTitleLinks(){
         console.log('articleTitle:', articleTitle);
 
         /* get the title from the title element */
-
         /* create HTML of the link */
 
         const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
@@ -104,3 +99,4 @@ function genereteTitleLinks(){
 }
 
 genereteTitleLinks();
+}
