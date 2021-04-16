@@ -48,7 +48,8 @@
 
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
-    optTitleListSelector = '.titles';
+    optTitleListSelector = '.titles',
+    optArticleTagsSelector = '.post-tags .list';
 
   function genereteTitleLinks(){
 
@@ -59,7 +60,7 @@
 
     /* for each article */
 
-    const articles = document.querySelectorAll('.post');
+    const articles = document.querySelectorAll(optArticleSelector);
     let html = '';
 
     for(let article of articles){
@@ -99,4 +100,64 @@
   }
 
   genereteTitleLinks();
+
+  function generateTags(){
+    /* find all articles */
+    const articles = document.querySelectorAll(optArticleSelector);
+
+    /* START LOOP: for every article: */
+    for(let article of articles){
+      console.log(article);
+
+      /* find tags wrapper */
+      const tagList = article.querySelector(optArticleTagsSelector);
+      console.log('tagList:', tagList);
+
+      /* make html variable with empty string */
+      let html = '';
+
+      /* get tags from data-tags attribute */
+      const articleTags = article.getAttribute('data-tags');
+      console.log(articleTags);
+
+      /* split tags into array */
+      const articleTagsArray = articleTags.split(' ');
+      console.log(articleTagsArray);
+
+      /* START LOOP: for each tag */
+      for(let tag of articleTagsArray){
+        console.log('tag:', tag);
+
+      /* sposób na brak polskich znaków ale co z data tagami?
+      String.prototype.noPLs = function(){
+        return this.replace(/ą/g, 'a').replace(/Ą/g, 'A')
+          .replace(/ć/g, 'c').replace(/Ć/g, 'C')
+          .replace(/ę/g, 'e').replace(/Ę/g, 'E')
+          .replace(/ł/g, 'l').replace(/Ł/g, 'L')
+          .replace(/ń/g, 'n').replace(/Ń/g, 'N')
+          .replace(/ó/g, 'o').replace(/Ó/g, 'O')
+          .replace(/ś/g, 's').replace(/Ś/g, 'S')
+          .replace(/ż/g, 'z').replace(/Ż/g, 'Z')
+          .replace(/ź/g, 'z').replace(/Ź/g, 'Z');
+        }
+        let noPLs = tag.noPLs();
+        console.log('noPLs:', noPLs); */
+
+        /* generate HTML of the link */
+        const tagHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+        console.log('tagHTML:', tagHTML);
+
+        /* add generated code to html variable */
+        html = html + tagHTML;
+        console.log('html:', html);
+
+      /* END LOOP: for each tag */
+      }
+      /* insert HTML of all the links into the tags wrapper */
+      tagList.innerHTML = html;
+    /* END LOOP: for every article: */
+    }
+  }
+
+  generateTags();
 }
