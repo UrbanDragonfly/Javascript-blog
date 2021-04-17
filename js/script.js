@@ -219,6 +219,59 @@
     /* END LOOP: for each link */
     }
   }
-
   addClickListenersToTags();
+
+  function generateAuthors(){
+    /* find all articles */
+
+    /* START LOOP: for every article: */
+
+      /* find authors wrapper */
+
+      /* make html variable with empty string */
+
+      /* get authors from data-authors attribute */
+
+      /* generate HTML of the link */
+
+      /* add generated code to html variable */
+
+      /* insert HTML of all link into the authors wrapper */
+
+    /* END LOOP: for every article: */
+  }
+
+  generateAuthors();
+
+  function AuthorClickHandler(event){
+    /* prevent default action for this event */
+
+    /* make new constant named "clickedElement" and give it the value of "this" */
+
+    /* make a new constant "href" and read the attribute "href" of the clicked element */
+
+    /* make a new constant "author" and extract author from the "href" constant */
+
+    /* find all author links with class active */
+
+    /* remove class active */
+
+    /* find author link with "href" attribute equal to the "href" constant */
+
+    /* add class active */
+
+    /* execute function "generateTitleLinks" with article selector as argument */
+  }
+
+  function addClickListenersToAuthors(){
+    /* find all links to authors */
+
+    /* START LOOP: for each link */
+
+      /* add authorClickHandler as event listener for that link */
+
+    /* END LOOP: for each link */
+  }
+
+  addClickListenersToAuthors();
 }
