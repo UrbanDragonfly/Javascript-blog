@@ -1,3 +1,4 @@
+/* eslint-disable no-inner-declarations */
 {
   'use strict';
 
@@ -51,7 +52,7 @@
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list';
 
-  function genereteTitleLinks(){
+  function genereteTitleLinks(customSelector = ''){
 
     /* remove contents of titleList */
 
@@ -60,7 +61,7 @@
 
     /* for each article */
 
-    const articles = document.querySelectorAll(optArticleSelector);
+    const articles = document.querySelectorAll(optArticleSelector + customSelector);
     let html = '';
 
     for(let article of articles){
@@ -128,20 +129,20 @@
       for(let tag of articleTagsArray){
         console.log('tag:', tag);
 
-      /* sposób na brak polskich znaków ale co z data tagami?
-      String.prototype.noPLs = function(){
-        return this.replace(/ą/g, 'a').replace(/Ą/g, 'A')
-          .replace(/ć/g, 'c').replace(/Ć/g, 'C')
-          .replace(/ę/g, 'e').replace(/Ę/g, 'E')
-          .replace(/ł/g, 'l').replace(/Ł/g, 'L')
-          .replace(/ń/g, 'n').replace(/Ń/g, 'N')
-          .replace(/ó/g, 'o').replace(/Ó/g, 'O')
-          .replace(/ś/g, 's').replace(/Ś/g, 'S')
-          .replace(/ż/g, 'z').replace(/Ż/g, 'Z')
-          .replace(/ź/g, 'z').replace(/Ź/g, 'Z');
-        }
-        let noPLs = tag.noPLs();
-        console.log('noPLs:', noPLs); */
+        /* method for replacing polish chars but what with data-tags?
+        String.prototype.noPLs = function(){
+          return this.replace(/ą/g, 'a').replace(/Ą/g, 'A')
+            .replace(/ć/g, 'c').replace(/Ć/g, 'C')
+            .replace(/ę/g, 'e').replace(/Ę/g, 'E')
+            .replace(/ł/g, 'l').replace(/Ł/g, 'L')
+            .replace(/ń/g, 'n').replace(/Ń/g, 'N')
+            .replace(/ó/g, 'o').replace(/Ó/g, 'O')
+            .replace(/ś/g, 's').replace(/Ś/g, 'S')
+            .replace(/ż/g, 'z').replace(/Ż/g, 'Z')
+            .replace(/ź/g, 'z').replace(/Ź/g, 'Z');
+          }
+          let noPLs = tag.noPLs();
+          console.log('noPLs:', noPLs); */
 
         /* generate HTML of the link */
         const tagHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
@@ -158,6 +159,66 @@
     /* END LOOP: for every article: */
     }
   }
-
   generateTags();
+
+  function tagClickHandler(event){
+    /* prevent default action for this event */
+    event.preventDefault();
+    console.log('event:', event);
+
+    /* make new constant named "clickedElement" and give it the value of "this" */
+    const clickedElement = this;
+    console.log('Tag was clicked!');
+    console.log('clickedElement:', clickedElement);
+
+    /* make a new constant "href" and read the attribute "href" of the clicked element */
+    const href = clickedElement.getAttribute('href');
+    console.log('href:', href);
+
+    /*make a new constant "tag" and extract tag from the "href" constant */
+    const tag = href.replace('#tag-', '');
+    console.log('tag:', tag);
+
+    /* find all tag links with class active */
+    const activeTags = document.querySelectorAll('a.active[href^="#tag-"]');
+    console.log('activeTags', activeTags);
+
+    /* START LOOP: for each active tag link */
+    for (let activeTag of activeTags){
+      console.log('activeTag:', activeTag);
+      /* remove class active */
+      activeTag.classList.remove('active');
+    /* END LOOP: for each active tag link */
+    }
+
+    /* find all tag links with "href" attribute equal to the "href" constant */
+    const allTagLinks = document.querySelectorAll('a[href="' + href + '"]');
+    console.log('allTagLinks:', allTagLinks);
+
+    /* START LOOP: for each found tag link */
+    for(let TagLink of allTagLinks){
+      console.log('TagLink:' + TagLink);
+      /* add class active */
+      TagLink.classList.add('active');
+    /* END LOOP: for each found tag link */
+    }
+    /* execute function "generateTitleLinks" with article selector as argument */
+    generateTitleLinks('[data-tags~="' + tag + '"]');
+  }
+
+  function addClickListenersToTags(){
+    /* find all links to tags */
+    const allTags = document.querySelectorAll('a[href^="#tag-"]');
+    console.log('allTags', allTags);
+    /* START LOOP: for each link */
+    for (const tag of allTags){
+      console.log('tag of allTags:', tag);
+      console.log('tag of allTags:' + tag);
+      /* add tagClickHandler as event listener for that link */
+      tag.addEventListener('click', tagClickHandler);
+    /* END LOOP: for each link */
+    }
+  }
+
+  addClickListenersToTags();
 }
