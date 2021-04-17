@@ -52,7 +52,7 @@
     optTitleListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list';
 
-  function genereteTitleLinks(customSelector = ''){
+  function generateTitleLinks(customSelector = ''){
 
     /* remove contents of titleList */
 
@@ -100,7 +100,7 @@
 
   }
 
-  genereteTitleLinks();
+  generateTitleLinks();
 
   function generateTags(){
     /* find all articles */
