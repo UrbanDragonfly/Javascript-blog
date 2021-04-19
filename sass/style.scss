@@ -87,34 +87,36 @@ body {
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+
     li, a {
       //border: solid 1px red;
       display: inline-flex;
       margin: 0 0.4rem;
       text-decoration: none;
+
       .tag-size-1 {
         color: #135e96;
         font-size: 70%;
       }
+
       .tag-size-2 {
         color: #0a4b78;
-        font-size: 100%
-
+        font-size: 100%;
       }
+
       .tag-size-3 {
         color: #043959;
-        font-size: 130%
-
+        font-size: 130%;
       }
+
       .tag-size-4 {
         color: #01263a;
-        font-size: 160%
-
+        font-size: 160%;
       }
+
       .tag-size-5 {
         color: #00131c;
-        font-size: 190%
-
+        font-size: 190%;
       }
     }
   }
