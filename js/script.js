@@ -187,7 +187,7 @@
       const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + '</a>(' + allTags[tag] + ')</li>';
       console.log('tagLinkHTML:', tagLinkHTML);
 
-      allTagsHTML += '<li><a class="" href="#tag-' + tag + '">' + tag + '</a>(' + allTags[tag] + ')</li>';
+      allTagsHTML += tagLinkHTML;
 
     /* [NEW] END LOOP: for each tag in allTags: */
     }

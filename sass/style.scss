@@ -82,6 +82,37 @@ body {
   margin: 0;
   padding: 0;
 
+  &.tags {
+    //display: inline-flex;
+    //align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: solid 1px red;
+
+      margin: 0 5px;
+      .tag-size-1 {
+        font-size: 70%;
+      }
+      .tag-size-2 {
+        font-size: 100%
+      }
+      .tag-size-3 {
+        font-size: 130%
+      }
+      .tag-size-4 {
+        font-size: 160%
+      }
+      .tag-size-5 {
+        font-size: 190%
+      }
+    }
+  }
+
   .active {
     font-weight: bold;
   }
