@@ -83,32 +83,38 @@ body {
   padding: 0;
 
   &.tags {
-    //display: inline-flex;
-    //align-items: center;
     display: flex;
     align-items: center;
-    justify-content: center;
-    li {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: solid 1px red;
-
-      margin: 0 5px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    li, a {
+      //border: solid 1px red;
+      display: inline-flex;
+      margin: 0 0.4rem;
+      text-decoration: none;
       .tag-size-1 {
+        color: #135e96;
         font-size: 70%;
       }
       .tag-size-2 {
+        color: #0a4b78;
         font-size: 100%
+
       }
       .tag-size-3 {
+        color: #043959;
         font-size: 130%
+
       }
       .tag-size-4 {
+        color: #01263a;
         font-size: 160%
+
       }
       .tag-size-5 {
+        color: #00131c;
         font-size: 190%
+
       }
     }
   }
