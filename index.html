@@ -186,7 +186,9 @@
         {{/each}}
       </script>
       <script id="template-authorList-link" type="text/x-handlebars-template">
-        <a href="#{{ author }}"><span>({{ count }})</span></a>
+        {{#each authors}}
+        <li><a href="#{{ author }}">{{ author }}</a><span>({{ count }})</span></li>
+        {{/each}}
       </script>
       <script src="./js/script.js"></script>
   </body>
